@@ -1,0 +1,36 @@
+{
+  "id": "MY-009",
+  "name": "Rimba SUV",
+  "category": "Vehicles",
+  "summary": "A fictional five-seat compact SUV from KL Rush’s street traffic, assembled with its wheels where the game mounts them.",
+  "tags": [
+    "Fictional car",
+    "KL Rush traffic"
+  ],
+  "status": "review",
+  "licence": null,
+  "viewer": {
+    "file": "rimba-suv.glb",
+    "cameraOrbit": "35deg 75deg auto"
+  },
+  "downloads": [],
+  "source": {
+    "repo": "kl-rush",
+    "commit": "e041f0f3",
+    "car": "rimba",
+    "paint": "#2f8f4f"
+  },
+  "notes": [
+    "Geometry as it ships in KL Rush, compressed for the web (meshopt geometry, KTX2 textures). The game paints and shades its cars in code; here that look is rebuilt as standard glTF materials, without the game’s dirt, dust and lamp glow. A download copy will be exported from source once the model is cleared."
+  ],
+  "credits": [
+    {
+      "part": "Model and surface textures",
+      "by": "KL Rush",
+      "url": "https://github.com/chengboonrong/kl-rush-preview",
+      "licence": null,
+      "verified": false,
+      "note": "KL Rush vehicle art, declared CC0-1.0 in KL Rush’s own records, but modelled on photos of a real production car: design rights unchecked. Made by scripted agents."
+    }
+  ]
+}

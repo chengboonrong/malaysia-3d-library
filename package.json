@@ -9,7 +9,8 @@
     "build": "node scripts/build.mjs",
     "posters": "node scripts/posters.mjs",
     "check": "node scripts/check.mjs",
-    "seam": "node scripts/seam-check.mjs"
+    "seam": "node scripts/seam-check.mjs",
+    "import": "node scripts/import-kl-rush.mjs"
   },
   "devDependencies": {
     "@gltf-transform/core": "4.5.1",

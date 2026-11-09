@@ -4,7 +4,6 @@ import { copyFileSync, existsSync, mkdirSync, readFileSync, readdirSync, rmSync,
 import { dirname, join } from 'node:path';
 import { NodeIO } from '@gltf-transform/core';
 import { ALL_EXTENSIONS } from '@gltf-transform/extensions';
-import { getBounds } from '@gltf-transform/functions';
 import validator from 'gltf-validator';
 import { zipSync } from 'fflate';
 import { MeshoptDecoder } from 'meshoptimizer';
@@ -22,7 +21,7 @@ const stop = (title) => {
 
 for (const m of models) {
   const missing = ['id', 'name', 'category', 'tags', 'summary', 'notes', 'licence'].filter((k) => m[k] === undefined);
-  if (!m.localName?.lang || !m.localName?.text) missing.push('localName.lang/text');
+  if (m.localName !== undefined && (!m.localName?.lang || !m.localName?.text)) missing.push('localName.lang/text');
   if (!m.viewer?.file || !m.viewer?.cameraOrbit) missing.push('viewer.file/cameraOrbit');
   if (!Array.isArray(m.downloads) || m.downloads.some((d) => !d.label || !d.file)) missing.push('downloads[].label/file');
   if (!Array.isArray(m.credits) || m.credits.some((c) => !c.part || !c.by || !c.url || c.licence === undefined || typeof c.verified !== 'boolean')) missing.push('credits[].part/by/url/licence/verified');
@@ -66,7 +65,24 @@ async function stats(file) {
       triangles += mode === 4 ? n / 3 : mode === 5 || mode === 6 ? n - 2 : 0;
     }
   });
-  const { min, max } = getBounds(scene);
+  // getBounds ignores skins, and a skinned mesh is drawn where its joints put it, so bound every vertex where it is drawn at rest
+  const min = [Infinity, Infinity, Infinity], max = [-Infinity, -Infinity, -Infinity];
+  const mul = (a, b) => a.map((_, k) => [0, 1, 2, 3].reduce((sum, i) => sum + a[i * 4 + k % 4] * b[k - k % 4 + i], 0)); // column-major a × b
+  scene.traverse((node) => {
+    const skin = node.getSkin(), ibm = skin?.getInverseBindMatrices(), world = node.getWorldMatrix();
+    const joints = skin?.listJoints().map((j, i) => mul(j.getWorldMatrix(), ibm ? ibm.getElement(i, []) : [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]));
+    for (const prim of node.getMesh()?.listPrimitives() ?? []) {
+      const pos = prim.getAttribute('POSITION'), J = prim.getAttribute('JOINTS_0'), W = prim.getAttribute('WEIGHTS_0');
+      for (let v = 0; v < pos.getCount(); v++) {
+        const p = pos.getElement(v, []), j = joints && J.getElement(v, []), w = joints && W.getElement(v, []);
+        const m = joints ? joints[0].map((_, k) => w.reduce((sum, wk, i) => sum + wk * joints[j[i]][k], 0)) : world;
+        for (let a = 0; a < 3; a++) {
+          const x = m[a] * p[0] + m[4 + a] * p[1] + m[8 + a] * p[2] + m[12 + a];
+          min[a] = Math.min(min[a], x); max[a] = Math.max(max[a], x);
+        }
+      }
+    }
+  });
   return { triangles, bytes: statSync(file).size, size: max.map((v, i) => v - min[i]) };
 }
 
@@ -140,8 +156,8 @@ for (const m of models) {
   writeFileSync(`${out}/index.html`, page('../../', `${m.name} · ${site.name}`, m.summary, `  <main class="shell">
     <section class="collection" aria-labelledby="title">
       <p class="eyebrow"><span>${esc(m.id)}</span> / ${esc(m.category)}</p>
-      <h1 id="title">${esc(m.name)}</h1>
-      <p class="subtitle" lang="${esc(m.localName.lang)}">${esc(m.localName.text)}</p>
+      <h1 id="title">${esc(m.name)}</h1>${m.localName ? `
+      <p class="subtitle" lang="${esc(m.localName.lang)}">${esc(m.localName.text)}</p>` : ''}
       <figure class="stage">
         <model-viewer src="${esc(m.viewer.file)}"${m.poster ? ' poster="poster.webp"' : ''} alt="${esc(m.name)}, interactive 3D model" camera-controls touch-action="pan-y" camera-orbit="${esc(m.viewer.cameraOrbit)}" interaction-prompt="none"></model-viewer>
         <div class="stage-top"><span><i></i> Model preview</span><span>${esc(m.id)}</span></div>
@@ -198,8 +214,8 @@ for (const m of models) {
 const card = (m) => `<li class="card"><a href="models/${esc(m.slug)}/">
           ${m.poster ? `<img class="thumb" src="models/${esc(m.slug)}/poster.webp" alt="" loading="lazy">` : '<span class="thumb"></span>'}
           <p class="eyebrow"><span>${esc(m.id)}</span></p>
-          <h4>${esc(m.name)}</h4>
-          <p class="subtitle" lang="${esc(m.localName.lang)}">${esc(m.localName.text)}</p>${m.status === 'approved' ? '' : '\n          <p class="status">In review</p>'}
+          <h4>${esc(m.name)}</h4>${m.localName ? `
+          <p class="subtitle" lang="${esc(m.localName.lang)}">${esc(m.localName.text)}</p>` : ''}${m.status === 'approved' ? '' : '\n          <p class="status">In review</p>'}
         </a></li>`;
 // one group per category, in the order categories first appear by id
 const groups = [...new Set(models.map((m) => m.category))].map((c) => `<h3 class="category">${esc(c)}</h3>
@@ -209,10 +225,10 @@ const groups = [...new Set(models.map((m) => m.category))].map((c) => `<h3 class
 writeFileSync('dist/index.html', page('./', site.name, 'Original 3D models inspired by everyday Malaysia.', `  <main class="shell">
     <section class="hero" aria-labelledby="title">
       <div class="intro">
-        <p class="eyebrow"><span>01</span> / BANGUNAN MALAYSIA</p>
+        <p class="eyebrow"><span>01</span> / KOLEKSI MALAYSIA</p>
         <h1 id="title">Malaysia<br><em>3D Library</em></h1>
         <p class="tagline">Build a little bit of Malaysia.</p>
-        <p class="summary">Explore and download original 3D assets inspired by everyday Malaysia. The first collection starts with the buildings that give our streets their character.</p>
+        <p class="summary">Original 3D models of everyday Malaysia, from shophouses and hawker food to the cars on our roads. Every model opens in 3D; downloads open as each one is cleared for reuse.</p>
         <a class="button primary" href="#collection">Explore the collection <span aria-hidden="true">↓</span></a>
       </div>
     </section>

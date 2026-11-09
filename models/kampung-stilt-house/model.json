@@ -1,0 +1,35 @@
+{
+  "id": "MY-002",
+  "name": "Kampung Stilt House",
+  "localName": {
+    "lang": "ms",
+    "text": "Rumah Kampung"
+  },
+  "category": "Architecture",
+  "summary": "A traditional Malay timber house raised on stilts, with its gable end and verandah facing the street.",
+  "tags": [
+    "Malay vernacular",
+    "KL Rush original geometry",
+    "Exterior"
+  ],
+  "status": "review",
+  "licence": null,
+  "viewer": {
+    "file": "kampung-stilt-house.glb",
+    "cameraOrbit": "35deg 72deg auto"
+  },
+  "downloads": [],
+  "notes": [
+    "Exported from the game’s code-built house as a test: simple materials and small painted textures, at real size. A cleaner export is planned."
+  ],
+  "credits": [
+    {
+      "part": "Model",
+      "by": "KL Rush",
+      "url": "https://github.com/chengboonrong/kl-rush-preview",
+      "licence": null,
+      "verified": false,
+      "note": "Original KL Rush content: the game’s procedural rumah kampung (src/world/landmarksHeritage.js), exported once with three.js GLTFExporter on 2026-11-09; see source/HOW.md. Made by scripted agents; reuse terms undecided."
+    }
+  ]
+}
