@@ -1,6 +1,7 @@
 {
   "name": "malaysia-3d-library",
   "private": true,
+  "license": "MIT",
   "type": "module",
   "engines": {
     "node": ">=22"
@@ -13,6 +14,7 @@
     "import": "node scripts/import-kl-rush.mjs"
   },
   "devDependencies": {
+    "@fontsource-variable/overpass": "5.3.0",
     "@gltf-transform/core": "4.5.1",
     "@gltf-transform/extensions": "4.5.1",
     "@gltf-transform/functions": "4.5.1",

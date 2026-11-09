@@ -1,6 +1,6 @@
 // npm run check (after npm run build): serves dist/ and checks the site in Chromium and WebKit. Every model page must load
 // its model without errors. The interaction checks (Front/Reset, downloads, phone layout) run on a sample: every model with
-// downloads plus the first model of each category. Then Chromium without WebGL must show each poster.
+// downloads plus the first model at each exit. Then Chromium without WebGL must show each poster.
 // One ok/FAIL line per check, exit code 1 on any FAIL. Screenshots go to test-results/.
 import { existsSync, mkdirSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { chromium, webkit } from 'playwright';
@@ -9,8 +9,8 @@ import { serve } from './serve.mjs';
 const site = JSON.parse(readFileSync('site.json', 'utf8'));
 const models = readdirSync('models').filter((slug) => existsSync(`models/${slug}/model.json`))
   .map((slug) => ({ slug, ...JSON.parse(readFileSync(`models/${slug}/model.json`, 'utf8')) })).sort((a, b) => a.id.localeCompare(b.id));
-const categories = [...new Set(models.map((m) => m.category))];
-const sample = models.filter((m) => m.downloads.length || models.find((o) => o.category === m.category) === m);
+const exitOf = (m) => site.exits.find((e) => e.models.includes(m.slug));
+const sample = models.filter((m) => m.downloads.length || exitOf(m).models[0] === m.slug);
 const VIEWPORTS = { desktop: { width: 1280, height: 860 }, phone: { width: 390, height: 844 } };
 const MAGIC = { glb: 'glTF', zip: 'PK' };
 mkdirSync('test-results', { recursive: true });
@@ -77,12 +77,29 @@ try {
       };
 
       const home = await open(context, url);
-      const hrefs = await home.page.$$eval('.cards a', (as) => as.map((a) => a.href));
-      check(`${tag} home: one card per model, linking to its page`, hrefs.length === models.length && models.every((m) => hrefs.includes(`${url}models/${m.slug}/`)), `${hrefs.length} cards, ${models.length} models`);
-      const headings = await home.page.$$eval('.category', (hs) => hs.map((h) => h.textContent));
-      check(`${tag} home: one heading per category, in id order`, headings.join() === categories.join(), headings.join(', '));
+      const placed = await home.page.$$eval('main .exit', (es) => es.map((e) => [e.id, [...e.querySelectorAll('.object-link')].map((a) => a.href)]));
+      const want = site.exits.map((e) => [e.id, e.models.map((slug) => `${url}models/${slug}/`)]);
+      check(`${tag} home: every model at its exit, in site.json order`, JSON.stringify(placed) === JSON.stringify(want), `${placed.flatMap(([, h]) => h).length} links, ${models.length} models`);
+      const headings = await home.page.$$eval('main .exit h2', (hs) => hs.map((h) => h.textContent));
+      check(`${tag} home: one heading per exit`, headings.join() === site.exits.map((e, i) => `Exit ${i + 1}: ${e.name}`).join(), headings.join(', '));
+      await home.page.waitForFunction(() => document.querySelector('model-viewer')?.loaded || self.modelViewerError, null, { timeout: 60000 }).catch(() => {});
+      check(`${tag} home: the live model loads`, await home.page.evaluate(() => document.querySelector('model-viewer')?.loaded));
+      const lit = async () => home.page.$$eval('.board[aria-current]', (bs) => bs.map((b) => b.hash));
+      const firstLit = await lit();
+      await home.page.evaluate(() => document.getElementById('kopitiam').scrollIntoView());
+      await home.page.waitForTimeout(400);
+      check(`${tag} home: the gantry lights the exit you scroll to`, firstLit.join() === '#skyline' && (await lit()).join() === '#kopitiam', `${firstLit} -> ${await lit()}`);
+      await home.page.evaluate(() => scrollTo(0, 0));
+      await home.page.waitForTimeout(400);
       await home.page.screenshot({ path: shot('home'), fullPage: true });
       await pageChecks('home', home.page, home.problems);
+      await home.page.keyboard.type('999');
+      await home.page.keyboard.press('Enter');
+      const refusal = await home.page.textContent('.jump output');
+      check(`${tag} home: an unknown stone number says so`, /No stone MY-999/.test(refusal), refusal);
+      await home.page.fill('#stone-number', '35');
+      await Promise.all([home.page.waitForURL(`${url}models/merdeka-118/`), home.page.press('#stone-number', 'Enter')]).catch(() => {});
+      check(`${tag} home: keying stone 35 drives to MY-035`, home.page.url() === `${url}models/merdeka-118/`, home.page.url());
       await home.page.close();
 
       for (const m of size === 'desktop' ? models : sample) {
@@ -92,6 +109,8 @@ try {
         const loaded = await page.evaluate(() => document.querySelector('model-viewer')?.loaded);
         check(`${tag} ${name}: page loads and <model-viewer> loads the model`, status === 200 && loaded, `HTTP ${status}, loaded ${loaded}`);
         if (sample.includes(m)) {
+          const litBoard = await page.$$eval('.board[aria-current]', (bs) => bs.map((b) => b.hash).join());
+          check(`${tag} ${name}: the gantry lights its exit`, litBoard === `#${exitOf(m).id}`, litBoard);
           const start = await settledOrbit(page);
           await page.getByRole('button', { name: 'Front' }).click();
           const front = await settledOrbit(page);

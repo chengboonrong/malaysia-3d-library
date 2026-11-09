@@ -1,0 +1,35 @@
+{
+  "id": "MY-041",
+  "name": "Masjid Jamek",
+  "category": "Landmarks",
+  "summary": "One of Kuala Lumpur’s oldest mosques, completed in 1909 where the Klang and Gombak rivers meet.",
+  "tags": [
+    "Mosque",
+    "Heritage"
+  ],
+  "status": "review",
+  "licence": null,
+  "viewer": {
+    "file": "masjid-jamek.glb",
+    "cameraOrbit": "35deg 72deg auto"
+  },
+  "downloads": [],
+  "source": {
+    "repo": "kl-rush",
+    "commit": "e041f0f3",
+    "builder": "src/world/landmarksHeritage.js#buildMasjidJamek",
+    "note": "KL Rush’s procedural landmark, built from photos of the real building and exported in Chromium by npm run import."
+  },
+  "notes": [
+    "Built in code and exported with plain daytime materials and small painted textures, compressed for the web (meshopt geometry). Sizes are as modelled, not surveyed. A download copy will be exported from source once the model is cleared."
+  ],
+  "credits": [
+    {
+      "part": "Model",
+      "by": "Malaysia 3D Library",
+      "licence": null,
+      "verified": false,
+      "note": "Modelled on photos of the real building; likeness and trademark rights unchecked. Made by scripted agents."
+    }
+  ]
+}

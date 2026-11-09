@@ -1,0 +1,36 @@
+{
+  "id": "MY-037",
+  "name": "Exchange 106",
+  "category": "Landmarks",
+  "summary": "The 445.5 m office tower at the heart of the Tun Razak Exchange (TRX) financial district.",
+  "tags": [
+    "Skyscraper",
+    "Tun Razak Exchange"
+  ],
+  "status": "review",
+  "licence": null,
+  "viewer": {
+    "file": "exchange-106.glb",
+    "cameraOrbit": "30deg 82deg auto"
+  },
+  "downloads": [],
+  "source": {
+    "repo": "kl-rush",
+    "commit": "e041f0f3",
+    "builder": "src/world/landmarksModern.js#buildExchange106",
+    "scale": 1.8868,
+    "note": "KL Rush’s procedural landmark, built from photos of the real building and exported in Chromium by npm run import."
+  },
+  "notes": [
+    "Built in code and exported with plain daytime materials and small painted textures, compressed for the web (meshopt geometry). Scaled up uniformly to the real building’s height, so its width and depth follow the model’s proportions. A download copy will be exported from source once the model is cleared."
+  ],
+  "credits": [
+    {
+      "part": "Model",
+      "by": "Malaysia 3D Library",
+      "licence": null,
+      "verified": false,
+      "note": "Modelled on photos of the real building; likeness and trademark rights unchecked. Made by scripted agents."
+    }
+  ]
+}

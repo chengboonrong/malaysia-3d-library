@@ -1,0 +1,40 @@
+{
+  "id": "MY-034",
+  "name": "Petronas Twin Towers",
+  "localName": {
+    "lang": "ms",
+    "text": "Menara Berkembar Petronas"
+  },
+  "category": "Landmarks",
+  "summary": "Twin 88-storey office towers joined by a skybridge at Kuala Lumpur City Centre (KLCC); the tallest buildings in the world from 1998 to 2004.",
+  "tags": [
+    "Skyscraper",
+    "KLCC"
+  ],
+  "status": "review",
+  "licence": null,
+  "viewer": {
+    "file": "petronas-twin-towers.glb",
+    "cameraOrbit": "30deg 82deg auto"
+  },
+  "downloads": [],
+  "source": {
+    "repo": "kl-rush",
+    "commit": "e041f0f3",
+    "builder": "src/world/landmarksModern.js#buildPetronasTowers",
+    "scale": 1.8407,
+    "note": "KL Rush’s procedural landmark, built from photos of the real building and exported in Chromium by npm run import."
+  },
+  "notes": [
+    "Built in code and exported with plain daytime materials and small painted textures, compressed for the web (meshopt geometry). Scaled up uniformly to the real building’s height, so its width and depth follow the model’s proportions. A download copy will be exported from source once the model is cleared."
+  ],
+  "credits": [
+    {
+      "part": "Model",
+      "by": "Malaysia 3D Library",
+      "licence": null,
+      "verified": false,
+      "note": "Modelled on photos of the real building; likeness and trademark rights unchecked. Made by scripted agents."
+    }
+  ]
+}

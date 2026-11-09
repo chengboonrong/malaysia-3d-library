@@ -1,0 +1,35 @@
+{
+  "id": "MY-046",
+  "name": "Muzium Negara",
+  "category": "Landmarks",
+  "summary": "The National Museum on Jalan Damansara, opened in 1963, with a tall Malay roof and two mosaic murals on its front.",
+  "tags": [
+    "Museum",
+    "Malay architecture"
+  ],
+  "status": "review",
+  "licence": null,
+  "viewer": {
+    "file": "muzium-negara.glb",
+    "cameraOrbit": "35deg 72deg auto"
+  },
+  "downloads": [],
+  "source": {
+    "repo": "kl-rush",
+    "commit": "e041f0f3",
+    "builder": "src/world/landmarksHeritage.js#buildMuziumNegara",
+    "note": "KL Rush’s procedural landmark, built from photos of the real building and exported in Chromium by npm run import."
+  },
+  "notes": [
+    "Built in code and exported with plain daytime materials and small painted textures, compressed for the web (meshopt geometry). Sizes are as modelled, not surveyed. A download copy will be exported from source once the model is cleared."
+  ],
+  "credits": [
+    {
+      "part": "Model",
+      "by": "Malaysia 3D Library",
+      "licence": null,
+      "verified": false,
+      "note": "Modelled on photos of the real building; likeness and trademark rights unchecked. Made by scripted agents."
+    }
+  ]
+}

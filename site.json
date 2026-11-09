@@ -1,4 +1,18 @@
 {
   "name": "Malaysia 3D Library",
-  "public": false
+  "public": false,
+  "exits": [
+    { "id": "skyline", "name": "Skyline", "models": ["merdeka-118", "petronas-twin-towers", "kl-tower", "exchange-106", "menara-dayabumi"] },
+    { "id": "city", "name": "City centre", "localName": {"lang": "ms", "text": "Pusat bandar"}, "models": ["kl-sentral", "masjid-negara", "muzium-negara", "stadium-merdeka", "stadium-negara", "mid-valley-megamall", "the-gardens-mall", "pasar-seni-mrt-entrance-b"] },
+    { "id": "old-kl", "name": "Old KL", "localName": {"lang": "ms", "text": "Kuala Lumpur lama"}, "models": ["sultan-abdul-samad-building", "masjid-jamek", "central-market", "royal-selangor-club", "kuala-lumpur-railway-station", "five-foot-way-shophouse"] },
+    { "id": "road", "name": "On the road", "localName": {"lang": "ms", "text": "Jalan raya"}, "models": ["perodua-myvi", "proton-saga", "perodua-axia", "perodua-bezza", "proton-persona", "proton-x50", "perodua-ativa", "perodua-alza", "roadside-workshop"] },
+    { "id": "kopitiam", "name": "Kopitiam", "localName": {"lang": "ms", "text": "Kedai kopi"}, "models": ["teh-tarik", "teh-tarik-pulling-jug", "roti-canai", "roti-tisu", "nasi-lemak", "kopitiam-plastic-stools", "dim-sum", "wantan-mee", "char-kway-teow", "fried-bee-hoon"] },
+    { "id": "night-market", "name": "Night market", "localName": {"lang": "ms", "text": "Pasar malam"}, "models": ["satay", "popiah", "bbq-sotong", "bak-kwa", "roasted-chestnuts", "durian", "cendol", "ais-batu-campur", "air-mata-kucing"] },
+    { "id": "kampung", "name": "Kampung", "models": ["kampung-stilt-house", "wau-bulan", "biawak", "long-tailed-macaque"] }
+  ],
+  "billboards": [
+    { "after": "skyline", "image": "towers-hills-golden-hour.webp", "alt": "KL Rush in-game: the KL skyline at golden hour, KL Tower and the Petronas Twin Towers against the hills", "head": "Drive between these towers.", "text": "Every object in this library was made for KL Rush, an open-world Kuala Lumpur you can drive in your browser, on a computer or a phone." },
+    { "after": "road", "image": "rain-night-drive.webp", "alt": "KL Rush in-game: a red car driving under the monorail through the afternoon rain", "head": "Then take them out in the rain.", "text": "Kapcai, cars and buses on left-hand roads, with traffic lights, monorail trains overhead and tropical storms that leave the roads shining." },
+    { "after": "night-market", "image": "alor-night-market.webp", "alt": "KL Rush in-game: the Jalan Alor night market under strings of red lanterns", "head": "Eat your way down Jalan Alor.", "text": "Mamak tables, hawker stalls and a Food journal of Malaysian dishes, in a city you can explore day and night." }
+  ]
 }

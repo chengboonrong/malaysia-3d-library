@@ -8,6 +8,8 @@ import validator from 'gltf-validator';
 import { zipSync } from 'fflate';
 import { MeshoptDecoder } from 'meshoptimizer';
 import { seamCheck } from './seam-check.mjs';
+import { homePage, layout, mb, modelPage } from './pages.mjs';
+import { unpack } from './unpack.mjs';
 
 const site = JSON.parse(readFileSync('site.json', 'utf8'));
 const models = readdirSync('models').filter((slug) => existsSync(`models/${slug}/model.json`))
@@ -24,12 +26,25 @@ for (const m of models) {
   if (m.localName !== undefined && (!m.localName?.lang || !m.localName?.text)) missing.push('localName.lang/text');
   if (!m.viewer?.file || !m.viewer?.cameraOrbit) missing.push('viewer.file/cameraOrbit');
   if (!Array.isArray(m.downloads) || m.downloads.some((d) => !d.label || !d.file)) missing.push('downloads[].label/file');
-  if (!Array.isArray(m.credits) || m.credits.some((c) => !c.part || !c.by || !c.url || c.licence === undefined || typeof c.verified !== 'boolean')) missing.push('credits[].part/by/url/licence/verified');
+  if (!Array.isArray(m.credits) || m.credits.some((c) => !c.part || !c.by || c.licence === undefined || typeof c.verified !== 'boolean')) missing.push('credits[].part/by/licence/verified');
   if (missing.length) errors.push(`${m.slug}: model.json is missing ${missing.join(', ')}`);
   if (!['review', 'approved'].includes(m.status)) errors.push(`${m.slug}: status must be "review" or "approved"`);
 }
 stop('model.json errors');
 models.sort((a, b) => a.id.localeCompare(b.id));
+
+// Every model stands at exactly one exit (site.json), in the order the exit lists them.
+const bySlug = new Map(models.map((m) => [m.slug, m]));
+for (const e of site.exits) {
+  e.members = e.models.map((slug) => bySlug.get(slug) ?? errors.push(`site.json exit "${e.id}": no model "${slug}"`)).filter((m) => typeof m === 'object');
+  for (const m of e.members) m.exit ? errors.push(`${m.slug}: at exits "${m.exit.id}" and "${e.id}"`) : m.exit = e;
+}
+for (const m of models) if (!m.exit) errors.push(`${m.slug}: at no exit in site.json`);
+for (const b of site.billboards ?? []) {
+  if (!site.exits.some((e) => e.id === b.after)) errors.push(`site.json billboard ${b.image}: no exit "${b.after}"`);
+  if (!existsSync(`site/kl-rush/${b.image}`)) errors.push(`site.json billboard: no site/kl-rush/${b.image}`);
+}
+stop('site.json exit errors');
 
 for (const m of models) {
   m.poster = existsSync(`models/${m.slug}/poster.webp`);
@@ -92,34 +107,6 @@ const MTIME = new Date(2000, 0, 1);
 const kitFiles = (dir) => readdirSync(dir, { recursive: true }).filter((f) => !/(^|\/)\./.test(f) && statSync(join(dir, f)).isFile()).sort();
 const zip = (dir) => zipSync(Object.fromEntries(kitFiles(dir).map((f) => [f, [readFileSync(join(dir, f)), { mtime: MTIME }]])));
 
-const esc = (s) => String(s).replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
-const metres = (v) => v < 1 ? v.toPrecision(2) : v.toFixed(1);
-const mb = (bytes) => bytes < 1e6 ? `${Math.ceil(bytes / 1e3)} KB` : `${(bytes / 1e6).toFixed(1)} MB`;
-
-const page = (root, title, description, main) => `<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">${site.public ? '' : '\n  <meta name="robots" content="noindex">'}
-  <meta name="description" content="${esc(description)}">
-  <title>${esc(title)}</title>
-  <link rel="stylesheet" href="${root}styles.css">
-</head>
-<body>
-  <header class="shell topbar">
-    <a class="wordmark" href="${root}" aria-label="${esc(site.name)} home">
-      <svg class="mark" viewBox="0 0 40 40" aria-hidden="true"><path d="M8 32V15l12-7 12 7v17H8Zm0-17 12 7 12-7M20 22v10M12 26h4m8 0h4" /></svg>
-      <span>Malaysia <b>3D Library</b></span>
-    </a>
-    <nav aria-label="Main navigation"><a href="${root}#collection">Collection</a><a href="${root}#about">About</a></nav>
-    <span class="edition"><i></i> Founding preview</span>
-  </header>
-${main}
-  <footer class="shell footer"><span>${esc(site.name)}</span><span>Founding collection · ${[...new Set(models.map((m) => esc(m.category)))].join(' · ')}</span></footer>
-</body>
-</html>
-`;
-
 rmSync('dist', { recursive: true, force: true });
 mkdirSync('dist/vendor', { recursive: true });
 // The plain (non-module) build bundles three.js and lit. It fetches decoders only for compressed files: meshopt and KTX2
@@ -129,121 +116,55 @@ copyFileSync('node_modules/@google/model-viewer/dist/model-viewer.min.js', 'dist
 copyFileSync('node_modules/meshoptimizer/meshopt_decoder.cjs', 'dist/vendor/meshopt_decoder.js');
 mkdirSync('dist/vendor/basis');
 for (const f of ['basis_transcoder.js', 'basis_transcoder.wasm']) copyFileSync(`node_modules/three/examples/jsm/libs/basis/${f}`, `dist/vendor/basis/${f}`);
-copyFileSync('site/styles.css', 'dist/styles.css');
+for (const f of ['styles.css', 'site.js']) copyFileSync(`site/${f}`, `dist/${f}`);
+mkdirSync('dist/kl-rush');
+for (const f of readdirSync('site/kl-rush')) copyFileSync(`site/kl-rush/${f}`, `dist/kl-rush/${f}`);
+// Overpass (SIL Open Font License 1.1), the road-sign face, self-hosted with its licence
+mkdirSync('dist/fonts');
+for (const f of ['overpass-latin-wght-normal.woff2', 'overpass-latin-ext-wght-normal.woff2']) copyFileSync(`node_modules/@fontsource-variable/overpass/files/${f}`, `dist/fonts/${f}`);
+copyFileSync('node_modules/@fontsource-variable/overpass/LICENSE', 'dist/fonts/OFL.txt');
 
 for (const m of models) {
   const src = `models/${m.slug}`, out = `dist/models/${m.slug}`;
   mkdirSync(out, { recursive: true });
   // the tile file belongs to a kit and is held to the download rules
-  const downloadGlbs = [...m.downloads.flatMap((d) => d.from ? kitFiles(`${src}/${d.from}`).map((f) => `${d.from}/${f}`) : [d.file]), m.tile?.file]
+  const downloadGlbs = [...m.downloads.flatMap((d) => d.from ? kitFiles(`${src}/${d.from}`).map((f) => `${d.from}/${f}`) : d.unpack ? [] : [d.file]), m.tile?.file]
     .filter((f) => f?.endsWith('.glb'));
   for (const f of new Set([m.viewer.file, ...downloadGlbs])) await validate(`${src}/${f}`, downloadGlbs.includes(f));
 
-  const s = await stats(`${src}/${m.viewer.file}`);
-  const scale = s.size.map((v, i) => `${metres(v)}&nbsp;m&nbsp;${'WHD'[i]}`).join(' × ');
-  console.log(`${m.slug}: ${s.triangles.toLocaleString('en-US')} triangles, ${s.bytes.toLocaleString('en-US')} B, ${s.size.map(metres).join(' × ')} m`);
+  const s = m.stats = await stats(`${src}/${m.viewer.file}`);
+  console.log(`${m.slug}: ${s.triangles.toLocaleString('en-US')} triangles, ${s.bytes.toLocaleString('en-US')} B, ${s.size.map((v) => v.toFixed(2)).join(' × ')} m`);
 
   if (m.tile && !(await seamCheck(`${src}/${m.tile.file}`, m.tile.width))) errors.push(`${m.slug}: ${m.tile.file} fails the tile check`);
 
-  for (const f of new Set([m.viewer.file, ...m.downloads.filter((d) => !d.from).map((d) => d.file), ...(m.poster ? ['poster.webp'] : [])])) {
+  for (const f of new Set([m.viewer.file, ...m.downloads.filter((d) => !d.from && !d.unpack).map((d) => d.file), ...(m.poster ? ['poster.webp'] : [])])) {
     mkdirSync(dirname(`${out}/${f}`), { recursive: true });
     copyFileSync(`${src}/${f}`, `${out}/${f}`);
   }
   for (const d of m.downloads.filter((d) => d.from)) writeFileSync(`${out}/${d.file}`, zip(`${src}/${d.from}`));
+  // "unpack": the download is the viewer file, decoded so any glTF tool opens it, with the credit and licence inside
+  for (const d of m.downloads.filter((d) => d.unpack)) {
+    if (!m.licence) { errors.push(`${m.slug}: download ${d.file} has no licence to carry`); continue; }
+    mkdirSync(dirname(`${out}/${d.file}`), { recursive: true });
+    writeFileSync(`${out}/${d.file}`, await unpack(io, `${src}/${m.viewer.file}`, `${site.name}, ${m.licence}`));
+    await validate(`${out}/${d.file}`, true);
+  }
 
-  const links = m.downloads.map((d, i) => `<a class="button ${i ? 'secondary' : 'primary'}" href="${esc(d.file)}" download="${esc(d.file.split('/').pop())}">${esc(d.label)}, ${mb(statSync(`${out}/${d.file}`).size)} <span aria-hidden="true">↓</span></a>`);
-  const credits = m.credits.map((c) => `<li><b>${esc(c.part)}:</b> <a href="${esc(c.url)}">${esc(c.by)}</a> · ${c.licence ? esc(c.licence) : 'licence pending'}${c.verified ? '' : ' (not verified)'}${c.note ? ` · ${esc(c.note)}` : ''}</li>`);
-  writeFileSync(`${out}/index.html`, page('../../', `${m.name} · ${site.name}`, m.summary, `  <main class="shell">
-    <section class="collection" aria-labelledby="title">
-      <p class="eyebrow"><span>${esc(m.id)}</span> / ${esc(m.category)}</p>
-      <h1 id="title">${esc(m.name)}</h1>${m.localName ? `
-      <p class="subtitle" lang="${esc(m.localName.lang)}">${esc(m.localName.text)}</p>` : ''}
-      <figure class="stage">
-        <model-viewer src="${esc(m.viewer.file)}"${m.poster ? ' poster="poster.webp"' : ''} alt="${esc(m.name)}, interactive 3D model" camera-controls touch-action="pan-y" camera-orbit="${esc(m.viewer.cameraOrbit)}" interaction-prompt="none"></model-viewer>
-        <div class="stage-top"><span><i></i> Model preview</span><span>${esc(m.id)}</span></div>
-        <figcaption class="stage-bottom">
-          <span>Drag to rotate · Scroll or pinch to zoom</span>
-          <div class="view-actions" role="group" aria-label="Camera views">
-            <button type="button" data-orbit="0deg 80deg auto">Front</button>
-            <button type="button" data-orbit="${esc(m.viewer.cameraOrbit)}">Reset</button>
-          </div>
-        </figcaption>
-      </figure>
-      <script>
-        self.ModelViewerElement = { meshoptDecoderLocation: '../../vendor/meshopt_decoder.js', ktx2TranscoderLocation: '../../vendor/basis/' };
-        const viewer = document.querySelector('model-viewer');
-        // three.js needs WebGL 2. Without it model-viewer still loads the model, can't draw it, and hides the poster.
-        if (!document.createElement('canvas').getContext('webgl2')) {
-          viewer.removeAttribute('src');
-          document.querySelector('.stage-bottom').remove();
-        }
-        for (const button of document.querySelectorAll('[data-orbit]')) button.addEventListener('click', () => {
-          viewer.cameraOrbit = button.dataset.orbit;
-          viewer.cameraTarget = 'auto auto auto';
-          viewer.fieldOfView = 'auto';
-        });
-      </script>
-      <div class="asset-info">
-        <div>
-          <p class="asset-description">${esc(m.summary)}</p>
-          <ul class="tags">${m.tags.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>
-        </div>
-        <dl class="specs">
-          <div><dt>Format</dt><dd>GLB 2.0</dd></div>
-          <div><dt>Triangles</dt><dd>${s.triangles.toLocaleString('en-US')}</dd></div>
-          <div><dt>Size</dt><dd>${mb(s.bytes)}</dd></div>
-          <div><dt>Scale</dt><dd>${scale}</dd></div>
-        </dl>
-        <div class="download">
-          ${links.join('\n          ')}
-          <p>${!links.length ? 'Downloads open once this model’s origin and reuse terms are cleared.' : m.licence ? `Licence: ${esc(m.licence)}.` : 'Review copy. Public reuse terms are pending.'}</p>
-        </div>
-      </div>
-      <details class="asset-notes">
-        <summary>Model notes and credits</summary>
-        <div>
-          ${m.notes.map((n) => `<p>${esc(n)}</p>`).join('\n          ')}
-          <ul>${credits.join('')}</ul>
-        </div>
-      </details>
-    </section>
-  </main>
-  <script type="module" src="../../vendor/model-viewer.min.js"></script>`));
+  m.links = m.downloads.map((d) => ({ href: d.file, name: d.file.split('/').pop(), label: d.label, size: mb(statSync(`${out}/${d.file}`).size) }));
 }
 
-const card = (m) => `<li class="card"><a href="models/${esc(m.slug)}/">
-          ${m.poster ? `<img class="thumb" src="models/${esc(m.slug)}/poster.webp" alt="" loading="lazy">` : '<span class="thumb"></span>'}
-          <p class="eyebrow"><span>${esc(m.id)}</span></p>
-          <h4>${esc(m.name)}</h4>${m.localName ? `
-          <p class="subtitle" lang="${esc(m.localName.lang)}">${esc(m.localName.text)}</p>` : ''}${m.status === 'approved' ? '' : '\n          <p class="status">In review</p>'}
-        </a></li>`;
-// one group per category, in the order categories first appear by id
-const groups = [...new Set(models.map((m) => m.category))].map((c) => `<h3 class="category">${esc(c)}</h3>
-      <ul class="cards">
-        ${models.filter((m) => m.category === c).map(card).join('\n        ')}
-      </ul>`);
-writeFileSync('dist/index.html', page('./', site.name, 'Original 3D models inspired by everyday Malaysia.', `  <main class="shell">
-    <section class="hero" aria-labelledby="title">
-      <div class="intro">
-        <p class="eyebrow"><span>01</span> / KOLEKSI MALAYSIA</p>
-        <h1 id="title">Malaysia<br><em>3D Library</em></h1>
-        <p class="tagline">Build a little bit of Malaysia.</p>
-        <p class="summary">Original 3D models of everyday Malaysia, from shophouses and hawker food to the cars on our roads. Every model opens in 3D; downloads open as each one is cleared for reuse.</p>
-        <a class="button primary" href="#collection">Explore the collection <span aria-hidden="true">↓</span></a>
-      </div>
-    </section>
-
-    <section id="collection" class="collection" aria-labelledby="collection-title">
-      <p class="eyebrow"><span>02</span> / THE COLLECTION</p>
-      <h2 id="collection-title">Founding collection</h2>
-      ${groups.join('\n      ')}
-    </section>
-
-    <section id="about" class="about" aria-labelledby="about-title">
-      <p class="eyebrow"><span>03</span> / THE LIBRARY</p>
-      <div><h2 id="about-title">A library shaped by Malaysia.</h2><p>The collection begins with original assets created for KL Rush, a browser game inspired by Malaysian streets and everyday life.</p><a href="https://github.com/chengboonrong/kl-rush-preview">Explore KL Rush <span aria-hidden="true">↗</span></a></div>
-    </section>
-  </main>`));
+// Nearby: the next three objects at the same exit (straight on), then the first object at the next exit (take the exit).
+const nearby = (m) => {
+  const own = m.exit.members, i = own.indexOf(m), next = site.exits[(site.exits.indexOf(m.exit) + 1) % site.exits.length];
+  return [...[1, 2, 3].map((k) => own[(i + k) % own.length]).filter((n, k, all) => n !== m && all.indexOf(n) === k).map((n) => ({ m: n, dir: 'up' })),
+    { m: next.members[0], dir: 'up-left' }];
+};
+const page = (root, m) => ({ site, root, exits: site.exits, stones: models, current: m?.exit.id, viewer: true });
+for (const m of models) writeFileSync(`dist/models/${m.slug}/index.html`, layout({ ...page('../../', m), title: `${m.name} · ${site.name}`,
+  description: m.summary, bodyClass: `model-page exit-${m.exit.id}`, main: modelPage({ site, m, nearby: nearby(m) }) }));
+writeFileSync('dist/index.html', layout({ ...page('./'), current: site.exits[0].id, title: `${site.name}: real objects from Malaysia in 3D`,
+  description: 'Real objects from Malaysia in 3D: Kuala Lumpur landmarks, the cars on our roads, kopitiam and night-market food, and the kampung.',
+  bodyClass: 'home', main: homePage({ site, exits: site.exits, models }) }));
 if (!site.public) writeFileSync('dist/robots.txt', 'User-agent: *\nDisallow: /\n');
 
 stop('build failed');

@@ -1,0 +1,36 @@
+{
+  "id": "MY-009",
+  "name": "Proton X50",
+  "category": "Vehicles",
+  "summary": "The original Proton X50 SUV, sold from 2020 to 2024.",
+  "tags": [
+    "SUV",
+    "Proton"
+  ],
+  "status": "review",
+  "licence": null,
+  "viewer": {
+    "file": "proton-x50.glb",
+    "cameraOrbit": "35deg 75deg auto"
+  },
+  "downloads": [],
+  "source": {
+    "repo": "kl-rush",
+    "commit": "e041f0f3",
+    "car": "rimba",
+    "paint": "#2f8f4f",
+    "note": "KL Rush vehicle art, declared CC0-1.0 in the game’s own records. Its surface maps are the colour, normal and ORM maps every KL Rush car shares, baked from the Rimba SUV (the Proton X50)."
+  },
+  "notes": [
+    "Compressed for the web (meshopt geometry, KTX2 textures). The car’s paint and shading were set in code; here they are rebuilt as standard glTF materials, without dirt, dust and lamp glow. A download copy will be exported from source once the model is cleared."
+  ],
+  "credits": [
+    {
+      "part": "Model and surface textures",
+      "by": "Malaysia 3D Library",
+      "licence": null,
+      "verified": false,
+      "note": "Modelled on photos of the real car; design rights unchecked. Made by scripted agents."
+    }
+  ]
+}

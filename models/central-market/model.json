@@ -1,0 +1,39 @@
+{
+  "id": "MY-043",
+  "name": "Central Market",
+  "localName": {
+    "lang": "ms",
+    "text": "Pasar Seni"
+  },
+  "category": "Landmarks",
+  "summary": "The 1937 Art Deco hall of the market founded in 1888, now a centre for arts and crafts.",
+  "tags": [
+    "Heritage",
+    "Art Deco"
+  ],
+  "status": "review",
+  "licence": null,
+  "viewer": {
+    "file": "central-market.glb",
+    "cameraOrbit": "35deg 72deg auto"
+  },
+  "downloads": [],
+  "source": {
+    "repo": "kl-rush",
+    "commit": "e041f0f3",
+    "builder": "src/world/landmarksHeritage.js#buildCentralMarket",
+    "note": "KL Rush’s procedural landmark, built from photos of the real building and exported in Chromium by npm run import."
+  },
+  "notes": [
+    "Built in code and exported with plain daytime materials and small painted textures, compressed for the web (meshopt geometry). Sizes are as modelled, not surveyed. A download copy will be exported from source once the model is cleared."
+  ],
+  "credits": [
+    {
+      "part": "Model",
+      "by": "Malaysia 3D Library",
+      "licence": null,
+      "verified": false,
+      "note": "Modelled on photos of the real building; likeness and trademark rights unchecked. Made by scripted agents."
+    }
+  ]
+}

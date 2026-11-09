@@ -9,27 +9,37 @@
   "summary": "A traditional Malay timber house raised on stilts, with its gable end and verandah facing the street.",
   "tags": [
     "Malay vernacular",
-    "KL Rush original geometry",
     "Exterior"
   ],
   "status": "review",
-  "licence": null,
+  "licence": "CC BY 4.0",
   "viewer": {
     "file": "kampung-stilt-house.glb",
     "cameraOrbit": "35deg 72deg auto"
   },
-  "downloads": [],
+  "downloads": [
+    {
+      "label": "Download GLB",
+      "file": "download/kampung-stilt-house.glb",
+      "unpack": true
+    }
+  ],
   "notes": [
-    "Exported from the game’s code-built house as a test: simple materials and small painted textures, at real size. A cleaner export is planned."
+    "Built in code and exported with plain daytime materials and small painted textures, at real size. Compressed for the web (meshopt geometry). A download copy will be exported from source once the model is cleared."
   ],
   "credits": [
     {
       "part": "Model",
-      "by": "KL Rush",
-      "url": "https://github.com/chengboonrong/kl-rush-preview",
-      "licence": null,
+      "by": "Malaysia 3D Library",
+      "licence": "CC BY 4.0",
       "verified": false,
-      "note": "Original KL Rush content: the game’s procedural rumah kampung (src/world/landmarksHeritage.js), exported once with three.js GLTFExporter on 2026-11-09; see source/HOW.md. Made by scripted agents; reuse terms undecided."
+      "note": "Made by scripted agents."
     }
-  ]
+  ],
+  "source": {
+    "repo": "kl-rush",
+    "commit": "e041f0f3",
+    "builder": "src/world/landmarksHeritage.js#buildRumahKampung",
+    "note": "Original KL Rush content: the game’s procedural rumah kampung, exported in Chromium by npm run import; see source/HOW.md."
+  }
 }

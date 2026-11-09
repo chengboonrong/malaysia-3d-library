@@ -1,0 +1,26 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+*{box-sizing:border-box;margin:0}body{width:1440px;height:900px;overflow:hidden;background:#2a2c2e;font-family:"Helvetica Neue",Arial,sans-serif;color:#fff}
+.gantry{height:200px;background:#3a3d40;border-bottom:10px solid #1d1f21;display:flex;gap:18px;padding:26px 40px;align-items:stretch}
+.board{flex:1;background:#00704a;border:5px solid #fff;border-radius:10px;padding:16px 20px;display:flex;flex-direction:column;justify-content:space-between}
+.board.on{box-shadow:0 0 0 6px #ffc72c}.board b{font-size:40px;letter-spacing:.5px}.board i{font-style:normal;font-size:22px;opacity:.85}.board span{font-size:44px}
+.blue{background:#0a4ea2}
+.road{position:relative;height:700px;background:linear-gradient(#2a2c2e,#232527)}
+.lane{position:absolute;left:0;right:0;top:430px;height:14px;background:repeating-linear-gradient(90deg,#fff 0 120px,transparent 120px 220px)}
+.edge{position:absolute;left:0;right:0;top:560px;height:10px;background:#ffc72c}
+.exit{position:absolute;left:40px;top:40px;background:#00704a;border:5px solid #fff;border-radius:10px;padding:18px 26px;font-size:64px;font-weight:700}
+.exit small{display:block;font-size:26px;font-weight:400}
+.obj{position:absolute;bottom:150px;text-align:center}.obj .m{width:300px;height:330px;background:radial-gradient(circle at 50% 60%,#9aa0a6,#5b6066 70%,transparent 71%)}
+.sign{margin:14px auto 0;background:#6b3b1f;border:4px solid #fff;border-radius:8px;padding:10px 16px;font-size:26px;font-weight:700;width:max-content}
+.post{width:10px;height:60px;background:#bfc4c8;margin:0 auto}
+.km{position:absolute;right:60px;bottom:120px;width:120px;height:160px;background:#fff;color:#111;border-radius:60px 60px 6px 6px;text-align:center;padding-top:34px;font-weight:700;font-size:34px}
+.km small{display:block;font-size:20px}
+.limit{position:absolute;left:470px;top:250px;width:120px;height:120px;border-radius:50%;background:#fff;border:14px solid #d0021b;color:#111;display:grid;place-items:center;font-weight:700;font-size:26px}
+</style></head><body>
+<div class="gantry"><div class="board on"><i>Exit 1</i><b>Skyline</b><span>↑</span></div><div class="board"><i>Exit 2 · Kuala Lumpur lama</i><b>Old KL</b><span>↗</span></div><div class="board blue"><i>Exit 3</i><b>On the road</b><span>→</span></div><div class="board"><i>Exit 4 · Kedai kopi</i><b>Kopitiam</b><span>←</span></div><div class="board"><i>Exit 5</i><b>Kampung</b><span>↖</span></div></div>
+<div class="road"><div class="exit">Skyline<small>Malaysia 3D Library · 51 objects you can turn in 3D</small></div>
+<div class="lane"></div><div class="edge"></div>
+<div class="obj" style="left:120px"><div class="m" style="width:220px;height:420px"></div><div class="post"></div><div class="sign">Merdeka 118</div></div>
+<div class="limit">678.9 m</div>
+<div class="obj" style="left:640px"><div class="m"></div><div class="post"></div><div class="sign">Petronas Twin Towers</div></div>
+<div class="obj" style="left:1010px"><div class="m" style="width:200px"></div><div class="post"></div><div class="sign">KL Tower</div></div>
+<div class="km"><small>MY</small>035</div></div></body></html>

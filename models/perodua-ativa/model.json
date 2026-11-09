@@ -1,0 +1,43 @@
+{
+  "id": "MY-010",
+  "name": "Perodua Ativa",
+  "category": "Vehicles",
+  "summary": "The Perodua Ativa SUV, sold from 2021.",
+  "tags": [
+    "SUV",
+    "Perodua"
+  ],
+  "status": "review",
+  "licence": null,
+  "viewer": {
+    "file": "perodua-ativa.glb",
+    "cameraOrbit": "35deg 75deg auto"
+  },
+  "downloads": [],
+  "source": {
+    "repo": "kl-rush",
+    "commit": "e041f0f3",
+    "car": "rentas",
+    "paint": "#ff7a1a",
+    "note": "KL Rush vehicle art, declared CC0-1.0 in the game’s own records. Its surface maps are the colour, normal and ORM maps every KL Rush car shares, baked from the Rimba SUV (the Proton X50)."
+  },
+  "notes": [
+    "Compressed for the web (meshopt geometry, KTX2 textures). The car’s paint and shading were set in code; here they are rebuilt as standard glTF materials, without dirt, dust and lamp glow. A download copy will be exported from source once the model is cleared."
+  ],
+  "credits": [
+    {
+      "part": "Model",
+      "by": "Malaysia 3D Library",
+      "licence": null,
+      "verified": false,
+      "note": "Modelled on photos of the real car; design rights unchecked. Made by scripted agents."
+    },
+    {
+      "part": "Surface textures",
+      "by": "Malaysia 3D Library",
+      "licence": null,
+      "verified": false,
+      "note": "The colour, normal and ORM maps every car here shares, baked from the Proton X50. Modelled on photos of the real car; design rights unchecked. Made by scripted agents."
+    }
+  ]
+}

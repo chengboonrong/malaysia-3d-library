@@ -1,0 +1,430 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-09T12:44:42.845Z",
+  "title": "Design System: Malaysia 3D Library",
+  "extensions": {
+    "colorMeta": {
+      "green": {
+        "role": "primary",
+        "displayName": "Expressway Green",
+        "purpose": "Expressway direction board: gantry and exit boards, Download and Nearby signs, Download open plate.",
+        "canonical": "var(--green)",
+        "tonalRamp": [
+          "color-mix(in oklab, var(--green), #000 80%)",
+          "color-mix(in oklab, var(--green), #000 60%)",
+          "color-mix(in oklab, var(--green), #000 40%)",
+          "color-mix(in oklab, var(--green), #000 20%)",
+          "var(--green)",
+          "color-mix(in oklab, var(--green), #fff 25%)",
+          "color-mix(in oklab, var(--green), #fff 50%)",
+          "color-mix(in oklab, var(--green), #fff 80%)"
+        ]
+      },
+      "blue": {
+        "role": "secondary",
+        "displayName": "Local-Road Blue",
+        "purpose": "Local roads and information: facts sign, info board, Kopitiam, Night market and Kampung exits.",
+        "canonical": "var(--blue)",
+        "tonalRamp": [
+          "color-mix(in oklab, var(--blue), #000 80%)",
+          "color-mix(in oklab, var(--blue), #000 60%)",
+          "color-mix(in oklab, var(--blue), #000 40%)",
+          "color-mix(in oklab, var(--blue), #000 20%)",
+          "var(--blue)",
+          "color-mix(in oklab, var(--blue), #fff 25%)",
+          "color-mix(in oklab, var(--blue), #fff 50%)",
+          "color-mix(in oklab, var(--blue), #fff 80%)"
+        ]
+      },
+      "brown": {
+        "role": "secondary",
+        "displayName": "Attraction Brown",
+        "purpose": "Tourist attraction sign under every object and the model nameplate.",
+        "canonical": "var(--brown)",
+        "tonalRamp": [
+          "color-mix(in oklab, var(--brown), #000 80%)",
+          "color-mix(in oklab, var(--brown), #000 60%)",
+          "color-mix(in oklab, var(--brown), #000 40%)",
+          "color-mix(in oklab, var(--brown), #000 20%)",
+          "var(--brown)",
+          "color-mix(in oklab, var(--brown), #fff 25%)",
+          "color-mix(in oklab, var(--brown), #fff 50%)",
+          "color-mix(in oklab, var(--brown), #fff 80%)"
+        ]
+      },
+      "orange": {
+        "role": "tertiary",
+        "displayName": "Works Orange",
+        "purpose": "Temporary works: View only sign, Review copy plate, stone-jump miss.",
+        "canonical": "var(--orange)",
+        "tonalRamp": [
+          "color-mix(in oklab, var(--orange), #000 80%)",
+          "color-mix(in oklab, var(--orange), #000 60%)",
+          "color-mix(in oklab, var(--orange), #000 40%)",
+          "color-mix(in oklab, var(--orange), #000 20%)",
+          "var(--orange)",
+          "color-mix(in oklab, var(--orange), #fff 25%)",
+          "color-mix(in oklab, var(--orange), #fff 50%)",
+          "color-mix(in oklab, var(--orange), #fff 80%)"
+        ]
+      },
+      "red": {
+        "role": "tertiary",
+        "displayName": "Limit Red",
+        "purpose": "Ring of the height and width roundels only.",
+        "canonical": "var(--red)",
+        "tonalRamp": [
+          "color-mix(in oklab, var(--red), #000 80%)",
+          "color-mix(in oklab, var(--red), #000 60%)",
+          "color-mix(in oklab, var(--red), #000 40%)",
+          "color-mix(in oklab, var(--red), #000 20%)",
+          "var(--red)",
+          "color-mix(in oklab, var(--red), #fff 25%)",
+          "color-mix(in oklab, var(--red), #fff 50%)",
+          "color-mix(in oklab, var(--red), #fff 80%)"
+        ]
+      },
+      "yellow": {
+        "role": "tertiary",
+        "displayName": "Lane Yellow",
+        "purpose": "Edge line, lit lamp, route shield, stone band, focus ring, selection, billboard Play.",
+        "canonical": "var(--yellow)",
+        "tonalRamp": [
+          "color-mix(in oklab, var(--yellow), #000 80%)",
+          "color-mix(in oklab, var(--yellow), #000 60%)",
+          "color-mix(in oklab, var(--yellow), #000 40%)",
+          "color-mix(in oklab, var(--yellow), #000 20%)",
+          "var(--yellow)",
+          "color-mix(in oklab, var(--yellow), #fff 25%)",
+          "color-mix(in oklab, var(--yellow), #fff 50%)",
+          "color-mix(in oklab, var(--yellow), #fff 80%)"
+        ]
+      },
+      "sheet": {
+        "role": "neutral",
+        "displayName": "Sheeting White",
+        "purpose": "Retroreflective lettering, sign border lines, stones.",
+        "canonical": "var(--sheet)",
+        "tonalRamp": [
+          "color-mix(in oklab, var(--sheet), #000 80%)",
+          "color-mix(in oklab, var(--sheet), #000 60%)",
+          "color-mix(in oklab, var(--sheet), #000 40%)",
+          "color-mix(in oklab, var(--sheet), #000 20%)",
+          "var(--sheet)",
+          "color-mix(in oklab, var(--sheet), #fff 25%)",
+          "color-mix(in oklab, var(--sheet), #fff 50%)",
+          "color-mix(in oklab, var(--sheet), #fff 80%)"
+        ]
+      },
+      "asphalt": {
+        "role": "neutral",
+        "displayName": "Asphalt",
+        "purpose": "Page ground and carriageways.",
+        "canonical": "var(--asphalt)",
+        "tonalRamp": [
+          "color-mix(in oklab, var(--asphalt), #000 80%)",
+          "color-mix(in oklab, var(--asphalt), #000 60%)",
+          "color-mix(in oklab, var(--asphalt), #000 40%)",
+          "color-mix(in oklab, var(--asphalt), #000 20%)",
+          "var(--asphalt)",
+          "color-mix(in oklab, var(--asphalt), #fff 25%)",
+          "color-mix(in oklab, var(--asphalt), #fff 50%)",
+          "color-mix(in oklab, var(--asphalt), #fff 80%)"
+        ]
+      },
+      "asphalt-deep": {
+        "role": "neutral",
+        "displayName": "Deep Asphalt",
+        "purpose": "Footer, gantry rails, lamp housings, billboard frame.",
+        "canonical": "var(--asphalt-deep)",
+        "tonalRamp": [
+          "color-mix(in oklab, var(--asphalt-deep), #000 80%)",
+          "color-mix(in oklab, var(--asphalt-deep), #000 60%)",
+          "color-mix(in oklab, var(--asphalt-deep), #000 40%)",
+          "color-mix(in oklab, var(--asphalt-deep), #000 20%)",
+          "var(--asphalt-deep)",
+          "color-mix(in oklab, var(--asphalt-deep), #fff 25%)",
+          "color-mix(in oklab, var(--asphalt-deep), #fff 50%)",
+          "color-mix(in oklab, var(--asphalt-deep), #fff 80%)"
+        ]
+      },
+      "steel": {
+        "role": "neutral",
+        "displayName": "Gantry Steel",
+        "purpose": "The gantry body.",
+        "canonical": "var(--steel)",
+        "tonalRamp": [
+          "color-mix(in oklab, var(--steel), #000 80%)",
+          "color-mix(in oklab, var(--steel), #000 60%)",
+          "color-mix(in oklab, var(--steel), #000 40%)",
+          "color-mix(in oklab, var(--steel), #000 20%)",
+          "var(--steel)",
+          "color-mix(in oklab, var(--steel), #fff 25%)",
+          "color-mix(in oklab, var(--steel), #fff 50%)",
+          "color-mix(in oklab, var(--steel), #fff 80%)"
+        ]
+      },
+      "concrete": {
+        "role": "neutral",
+        "displayName": "Verge Concrete",
+        "purpose": "Speckled verge behind objects.",
+        "canonical": "var(--concrete)",
+        "tonalRamp": [
+          "color-mix(in oklab, var(--concrete), #000 80%)",
+          "color-mix(in oklab, var(--concrete), #000 60%)",
+          "color-mix(in oklab, var(--concrete), #000 40%)",
+          "color-mix(in oklab, var(--concrete), #000 20%)",
+          "var(--concrete)",
+          "color-mix(in oklab, var(--concrete), #fff 25%)",
+          "color-mix(in oklab, var(--concrete), #fff 50%)",
+          "color-mix(in oklab, var(--concrete), #fff 80%)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "purpose": "Text on yellow, orange, white and concrete; kerb black.",
+        "canonical": "var(--ink)",
+        "tonalRamp": [
+          "color-mix(in oklab, var(--ink), #000 80%)",
+          "color-mix(in oklab, var(--ink), #000 60%)",
+          "color-mix(in oklab, var(--ink), #000 40%)",
+          "color-mix(in oklab, var(--ink), #000 20%)",
+          "var(--ink)",
+          "color-mix(in oklab, var(--ink), #fff 25%)",
+          "color-mix(in oklab, var(--ink), #fff 50%)",
+          "color-mix(in oklab, var(--ink), #fff 80%)"
+        ]
+      },
+      "muted-light": {
+        "role": "neutral",
+        "displayName": "Muted Light",
+        "purpose": "Secondary text on asphalt.",
+        "canonical": "var(--muted-light)",
+        "tonalRamp": [
+          "color-mix(in oklab, var(--muted-light), #000 80%)",
+          "color-mix(in oklab, var(--muted-light), #000 60%)",
+          "color-mix(in oklab, var(--muted-light), #000 40%)",
+          "color-mix(in oklab, var(--muted-light), #000 20%)",
+          "var(--muted-light)",
+          "color-mix(in oklab, var(--muted-light), #fff 25%)",
+          "color-mix(in oklab, var(--muted-light), #fff 50%)",
+          "color-mix(in oklab, var(--muted-light), #fff 80%)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Exit name",
+        "purpose": "The exit name on each full-bleed exit board."
+      },
+      "headline": {
+        "displayName": "Nameplate",
+        "purpose": "Object name on the model page; info board title and billboard head at this level."
+      },
+      "title": {
+        "displayName": "Sign heading",
+        "purpose": "Download, View only, Nearby."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Running text, 40 to 62ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Fact terms, tabs, tags, plates."
+      },
+      "stone-number": {
+        "displayName": "Stone number",
+        "purpose": "Catalogue numbers on kilometre stones, tabular."
+      }
+    },
+    "shadows": [
+      {
+        "name": "sign-border-line",
+        "value": "inset 0 0 0 var(--margin, 5px) var(--face), inset 0 0 0 calc(var(--margin, 5px) + var(--line, 3px)) var(--sheet)",
+        "purpose": "White border line on every sign face; not depth."
+      },
+      {
+        "name": "gantry-overhang",
+        "value": "0 10px 18px -8px rgb(0 0 0 / 0.55)",
+        "purpose": "Sticky gantry over the road."
+      },
+      {
+        "name": "object-on-verge",
+        "value": "drop-shadow(0 18px 12px rgb(40 32 20 / 0.22))",
+        "purpose": "Model posters on concrete; hover lifts 6px to drop-shadow(0 26px 16px rgb(40 32 20 / 0.2))."
+      },
+      {
+        "name": "roundel",
+        "value": "drop-shadow(0 4px 5px rgb(0 0 0 / 0.25))",
+        "purpose": "Limit roundels over the viewer."
+      },
+      {
+        "name": "billboard",
+        "value": "0 0 0 2px #55595e, 0 22px 34px -14px rgb(0 0 0 / 0.65)",
+        "purpose": "Billboard frame on its unipole."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "All transitions (--ease)."
+      },
+      {
+        "name": "gantry-light",
+        "value": "500ms",
+        "purpose": "Board face, lamp and lamplight when the current exit changes."
+      },
+      {
+        "name": "object-lift",
+        "value": "450ms",
+        "purpose": "Poster lift on hover."
+      },
+      {
+        "name": "button",
+        "value": "200ms",
+        "purpose": "Button face changes."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "transition-duration: 0s; instant gantry scroll; --drive frozen; auto-rotate removed",
+        "purpose": "prefers-reduced-motion: reduce."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "roadside-two",
+        "value": "1080px"
+      },
+      {
+        "name": "tablet",
+        "value": "860px"
+      },
+      {
+        "name": "phone",
+        "value": "560px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Gantry board (lit)",
+      "kind": "nav",
+      "refersTo": "gantry-board",
+      "description": "The current exit board on the sticky gantry.",
+      "html": "<a class=\"ds-board\" href=\"#\" aria-current=\"location\"><span class=\"ds-exit-no\">1</span><span class=\"ds-board-name\">City centre<small lang=\"ms\">Pusat bandar</small></span></a> <a class=\"ds-board\" href=\"#\"><span class=\"ds-exit-no\">2</span><span class=\"ds-board-name\">Old KL<small lang=\"ms\">Kuala Lumpur lama</small></span></a>",
+      "css": ".ds-board { --face: color-mix(in oklab, var(--green), var(--asphalt-deep) 38%); position: relative; display: inline-flex; align-items: center; width: 240px; height: 80px; padding: 10px 16px; margin: 16px 6px 0; border-radius: 8px; background: var(--face); box-shadow: inset 0 0 0 4px var(--face), inset 0 0 0 6px var(--sheet); color: #e3e8e5; text-decoration: none; font: 400 1rem/1.1 Overpass, sans-serif; transition: background-color 500ms var(--ease), color 500ms var(--ease); } .ds-board[aria-current] { --face: var(--green); color: var(--sheet); } .ds-board:hover { color: var(--sheet); } .ds-board:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; } .ds-exit-no { position: absolute; top: 0; right: 14px; translate: 0 -40%; padding: 1px 6px 0; border-radius: 4px; background: var(--sheet); color: var(--ink); font-weight: 900; font-size: 0.8125rem; } .ds-board-name { display: flex; flex-direction: column; font-weight: 800; font-size: 1.25rem; } .ds-board-name small { font-weight: 500; font-size: 0.8125rem; margin-top: 3px; }"
+    },
+    {
+      "name": "Attraction sign with stone",
+      "kind": "custom",
+      "refersTo": "attraction",
+      "description": "Brown sign under every object, with its kilometre stone.",
+      "html": "<span class=\"ds-attraction\"><span class=\"ds-attraction-name\">Teh Tarik</span><span class=\"ds-stone\"><small>MY</small>041</span></span>",
+      "css": ".ds-attraction { display: inline-flex; align-items: center; gap: 10px; padding: 10px 10px 10px 14px; border-radius: 7px; background: var(--brown); box-shadow: inset 0 0 0 4px var(--brown), inset 0 0 0 6px var(--sheet); color: var(--sheet); font-family: Overpass, sans-serif; } .ds-attraction-name { font-weight: 800; font-size: 1.0625rem; line-height: 1.15; } .ds-stone { display: flex; flex-direction: column; align-items: center; width: 44px; padding: 8px 0 3px; border-radius: 22px 22px 4px 4px; background: linear-gradient(var(--yellow) 0 6px, var(--sheet) 6px); color: var(--ink); font-weight: 900; font-size: 0.9375rem; line-height: 1; font-variant-numeric: tabular-nums; } .ds-stone small { font-size: 0.6875rem; font-weight: 800; }"
+    },
+    {
+      "name": "Download sign",
+      "kind": "card",
+      "refersTo": "sign-green",
+      "description": "Status for a cleared model: full green direction board.",
+      "html": "<section class=\"ds-sign-green\"><h2>Download</h2><a class=\"ds-dl\" href=\"#\">Download GLB<span>309 KB</span></a></section>",
+      "css": ".ds-sign-green { background: var(--green); box-shadow: inset 0 0 0 6px var(--green), inset 0 0 0 9px var(--sheet); border-radius: 12px; padding: 24px; color: var(--sheet); font: 400 1.0625rem/1.55 Overpass, sans-serif; } .ds-sign-green h2 { margin: 0; font-weight: 800; font-size: 1.5rem; line-height: 1.1; } .ds-dl { display: flex; gap: 12px; margin-top: 14px; padding: 12px 14px; border-radius: 8px; background: var(--sheet); color: var(--green); font-weight: 800; text-decoration: none; } .ds-dl span { margin-left: auto; font-weight: 600; color: #3c4a44; font-variant-numeric: tabular-nums; } .ds-dl:hover { background: #e6f2ec; } .ds-dl:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }"
+    },
+    {
+      "name": "View only works sign",
+      "kind": "card",
+      "refersTo": "sign-works",
+      "description": "Status for a model not cleared for download: orange temporary-works sign.",
+      "html": "<section class=\"ds-sign-works\"><h2>View only</h2><p>It can’t be downloaded until the rights are checked.</p></section>",
+      "css": ".ds-sign-works { background: var(--orange); box-shadow: inset 0 0 0 6px var(--orange), inset 0 0 0 9px var(--sheet); border-radius: 12px; padding: 24px; color: var(--sheet); font: 400 1.0625rem/1.55 Overpass, sans-serif; } .ds-sign-works h2 { margin: 0; font-weight: 800; font-size: 1.5rem; line-height: 1.1; } .ds-sign-works { color: var(--ink); } .ds-sign-works p { margin: 6px 0 0; }"
+    },
+    {
+      "name": "Facts sign",
+      "kind": "card",
+      "refersTo": "sign-blue",
+      "description": "Blue information sign with the model facts.",
+      "html": "<section class=\"ds-sign-blue\"><dl><div><dt>Triangles</dt><dd>9,920</dd></div></dl></section>",
+      "css": ".ds-sign-blue { background: var(--blue); box-shadow: inset 0 0 0 6px var(--blue), inset 0 0 0 9px var(--sheet); border-radius: 12px; padding: 24px; color: var(--sheet); font: 400 1.0625rem/1.55 Overpass, sans-serif; } .ds-sign-blue h2 { margin: 0; font-weight: 800; font-size: 1.5rem; line-height: 1.1; } .ds-sign-blue dl { margin: 0; } .ds-sign-blue dt { font-size: 0.8125rem; font-weight: 700; color: #cddcf0; } .ds-sign-blue dd { margin: 0; font-weight: 800; font-variant-numeric: tabular-nums; }"
+    },
+    {
+      "name": "Status plates",
+      "kind": "chip",
+      "refersTo": "plate-open",
+      "description": "Small plates: green Download open on the verge, orange Review copy.",
+      "html": "<span class=\"ds-plate ds-plate-open\">Download open</span> <span class=\"ds-plate ds-plate-works\">Review copy</span>",
+      "css": ".ds-plate { display: inline-block; padding: 4px 10px 2px; border-radius: 5px; font: 800 0.8125rem Overpass, sans-serif; } .ds-plate-open { background: var(--green); color: var(--sheet); } .ds-plate-works { background: var(--orange); color: var(--ink); }"
+    },
+    {
+      "name": "Camera button",
+      "kind": "button",
+      "refersTo": "view-button",
+      "description": "Front and Reset under the viewer.",
+      "html": "<button class=\"ds-view-btn\" type=\"button\">Front</button>",
+      "css": ".ds-view-btn { --face: var(--asphalt); border: 0; border-radius: 6px; padding: 9px 16px 7px; background: var(--face); box-shadow: inset 0 0 0 3px var(--face), inset 0 0 0 5px var(--sheet); color: var(--sheet); font: 800 1rem Overpass, sans-serif; cursor: pointer; transition: background-color 200ms var(--ease); } .ds-view-btn:hover { --face: #45484c; } .ds-view-btn:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }"
+    },
+    {
+      "name": "Billboard Play button",
+      "kind": "button",
+      "refersTo": "billboard-play",
+      "description": "The only call to action on a KL Rush billboard.",
+      "html": "<a class=\"ds-play\" href=\"#\">Play free in your browser</a>",
+      "css": ".ds-play { display: inline-flex; padding: 12px 18px 10px; border-radius: 6px; background: var(--yellow); color: var(--ink); font: 800 1rem Overpass, sans-serif; text-decoration: none; transition: background-color 200ms var(--ease); } .ds-play:hover { background: #ffd65e; } .ds-play:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Jalan Raya",
+    "overview": "The library is a drive through Malaysia. Each exit in site.json is a place off one road; the home page is that road, read top to bottom: a steel gantry overhead, an exit board painted edge to edge, a pale concrete verge where the objects stand, kerb stones, then asphalt with lane paint until the next exit. Every object stands under its own brown attraction sign with a white kilometre stone carrying its catalogue number. Model pages are a single stop on the verge, with the facts on roadside signs below.\n\nEverything is drawn from Malaysian road furniture and nothing else: retroreflective white lettering on sheeting colours, SVG sign arrows and pictograms, posts and unipoles in brushed steel gradients, red-ringed limit roundels. The world refuses the asset-store grid of equal thumbnail cards and the cream museum catalogue. Objects are laid out at mixed widths on the verge, never as a card grid.",
+    "keyCharacteristics": [
+      "Sign colours own whole regions: an exit board is its colour edge to edge.",
+      "One road-sign grotesque (Overpass, self-hosted variable font) for every word.",
+      "Status is carried by sign form and words, not by hue alone.",
+      "Measurements are signs: height and width roundels pinned to the viewer.",
+      "The gantry lights the exit you are in; the others stay matte."
+    ],
+    "rules": [
+      {
+        "name": "The Sheeting Rule",
+        "body": "A sign face is one sheeting colour with a white border line inset from its edge. Lettering on green, blue and brown is white; lettering on orange and yellow is ink.",
+        "section": "colors"
+      },
+      {
+        "name": "The Unlit Board Rule",
+        "body": "Gantry boards that are not current are their board colour mixed 38% toward deep asphalt (color-mix(in oklab, var(--board), var(--asphalt-deep) 38%)). Only the current board shows the full colour, the yellow lamp and the lamplight gradient.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tabular Stone Rule",
+        "body": "Every catalogue number, size and file figure uses tabular numerals (font-variant-numeric: tabular-nums).",
+        "section": "typography"
+      },
+      {
+        "name": "The Local Name Rule",
+        "body": "A local name always sits directly under the English name, lighter (500) and smaller, never replacing it.",
+        "section": "typography"
+      },
+      {
+        "name": "The Furniture Depth Rule",
+        "body": "Signs never cast shadows of their own; they stand on posts drawn with a steel gradient (linear-gradient(90deg, dark, light 45%, dark)). Lift belongs to objects, the gantry, roundels and billboards.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do show status by sign form: a cleared download is a full green Download board (and a green \"Download open\" plate on the verge); anything not cleared is an orange works sign or plate, with words saying so.",
+      "Do give every object its brown attraction sign and its kilometre stone; keying the stone number in the gantry must reach it.",
+      "Do paint each exit board edge to edge in its board colour: green on the expressway, blue for local roads.",
+      "Do show measurements as roundels on the viewer, never as a caption.",
+      "Do honour reduced motion: under prefers-reduced-motion: reduce every transition is 0s, the gantry swaps boards instantly instead of smooth-scrolling, --drive stops updating so the lane paint holds still, and auto-rotate is removed from the live model.",
+      "Do keep KL Rush on the billboards only: KL Rush and nothing else, on a billboard whose visible plate says \"Advertisement\", with images and scripts served from this site."
+    ],
+    "donts": [
+      "Don't advertise anything other than KL Rush, mention KL Rush outside the billboards, or add ad networks, analytics or any third-party script; the viewer, its decoders and the font are vendored and self-hosted.",
+      "Don't lay objects out as a grid of equal thumbnail cards.",
+      "Don't add a second typeface or use a system display face.",
+      "Don't draw icons with font glyphs or emoji; arrows and pictograms are SVG on the 24-unit grid.",
+      "Don't use orange, red or brown for anything outside their sign meanings (works, limits, attractions)."
+    ]
+  }
+}

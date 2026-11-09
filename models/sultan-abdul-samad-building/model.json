@@ -1,0 +1,39 @@
+{
+  "id": "MY-040",
+  "name": "Sultan Abdul Samad Building",
+  "localName": {
+    "lang": "ms",
+    "text": "Bangunan Sultan Abdul Samad"
+  },
+  "category": "Landmarks",
+  "summary": "The Moorish-style government building of 1897 facing Dataran Merdeka, with its 41 m clock tower and copper domes.",
+  "tags": [
+    "Heritage",
+    "Dataran Merdeka"
+  ],
+  "status": "review",
+  "licence": null,
+  "viewer": {
+    "file": "sultan-abdul-samad-building.glb",
+    "cameraOrbit": "35deg 72deg auto"
+  },
+  "downloads": [],
+  "source": {
+    "repo": "kl-rush",
+    "commit": "e041f0f3",
+    "builder": "src/world/landmarksHeritage.js#buildSultanAbdulSamad",
+    "note": "KL Rush’s procedural landmark, built from photos of the real building and exported in Chromium by npm run import."
+  },
+  "notes": [
+    "Built in code and exported with plain daytime materials and small painted textures, compressed for the web (meshopt geometry). Sizes are as modelled, not surveyed. A download copy will be exported from source once the model is cleared."
+  ],
+  "credits": [
+    {
+      "part": "Model",
+      "by": "Malaysia 3D Library",
+      "licence": null,
+      "verified": false,
+      "note": "Modelled on photos of the real building; likeness and trademark rights unchecked. Made by scripted agents."
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # Five-Foot-Way Shophouse: row kit
 
-From the Malaysia 3D Library (MY-001). The geometry is original and comes from KL Rush.
+From the Malaysia 3D Library (MY-001). The geometry is original.
 
 ## Files
 
@@ -28,7 +28,7 @@ A single standalone shophouse is the module with columns at x = −2.55 and x = 
 
 ## Credits
 
-- **Geometry:** KL Rush (https://github.com/chengboonrong/kl-rush-preview).
+- **Geometry:** Malaysia 3D Library.
 - **Surface maps:** ambientCG, PaintedPlaster017 and Concrete034, CC0 1.0 (https://ambientcg.com).
 
 ## Reuse terms
