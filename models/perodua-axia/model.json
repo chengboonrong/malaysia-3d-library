@@ -13,16 +13,39 @@
     "file": "perodua-axia.glb",
     "cameraOrbit": "35deg 75deg auto"
   },
+  "paints": [
+    {
+      "name": "Coral Blue",
+      "hex": "#006180"
+    },
+    {
+      "name": "Granite Grey",
+      "hex": "#3a4143"
+    },
+    {
+      "name": "Lava Red",
+      "hex": "#9e0412"
+    },
+    {
+      "name": "Glittering Silver",
+      "hex": "#99a1a8"
+    },
+    {
+      "name": "Ivory White",
+      "hex": "#ffffff"
+    }
+  ],
   "downloads": [],
   "source": {
     "repo": "kl-rush",
     "commit": "e041f0f3",
     "car": "comel",
-    "paint": "#f2c230",
+    "paint": "#006180",
     "note": "KL Rush vehicle art, declared CC0-1.0 in the game’s own records. Its surface maps are the colour, normal and ORM maps every KL Rush car shares, baked from the Rimba SUV (the Proton X50)."
   },
   "notes": [
-    "Compressed for the web (meshopt geometry, KTX2 textures). The car’s paint and shading were set in code; here they are rebuilt as standard glTF materials, without dirt, dust and lamp glow. A download copy will be exported from source once the model is cleared."
+    "Compressed for the web (meshopt geometry, KTX2 textures). The car’s paint and shading were set in code; here they are rebuilt as standard glTF materials, without dirt, dust and lamp glow. A download copy will be exported from source once the model is cleared.",
+    "Colours: Perodua’s colour list for the 2023 Axia (perodua.com.my and its brochure, checked 2026-11-09). The chips are close matches sampled from the maker’s colour swatches, not paint codes."
   ],
   "credits": [
     {

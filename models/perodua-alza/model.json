@@ -13,16 +13,39 @@
     "file": "perodua-alza.glb",
     "cameraOrbit": "35deg 75deg auto"
   },
+  "paints": [
+    {
+      "name": "Vintage Brown",
+      "hex": "#30201c"
+    },
+    {
+      "name": "Elegant Black",
+      "hex": "#222725"
+    },
+    {
+      "name": "Garnet Red",
+      "hex": "#68181a"
+    },
+    {
+      "name": "Glittering Silver",
+      "hex": "#babfc3"
+    },
+    {
+      "name": "Ivory White",
+      "hex": "#f8f8f8"
+    }
+  ],
   "downloads": [],
   "source": {
     "repo": "kl-rush",
     "commit": "e041f0f3",
     "car": "keluarga",
-    "paint": "#1a1a1a",
+    "paint": "#222725",
     "note": "KL Rush vehicle art, declared CC0-1.0 in the game’s own records. Its surface maps are the colour, normal and ORM maps every KL Rush car shares, baked from the Rimba SUV (the Proton X50)."
   },
   "notes": [
-    "Compressed for the web (meshopt geometry, KTX2 textures). The car’s paint and shading were set in code; here they are rebuilt as standard glTF materials, without dirt, dust and lamp glow. A download copy will be exported from source once the model is cleared."
+    "Compressed for the web (meshopt geometry, KTX2 textures). The car’s paint and shading were set in code; here they are rebuilt as standard glTF materials, without dirt, dust and lamp glow. A download copy will be exported from source once the model is cleared.",
+    "Colours: Perodua’s colour list for the 2022 Alza (perodua.com.my and its brochure, checked 2026-11-09). The chips are close matches sampled from the maker’s colour swatches, not paint codes."
   ],
   "credits": [
     {

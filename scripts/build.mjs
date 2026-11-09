@@ -29,6 +29,9 @@ for (const m of models) {
   if (!Array.isArray(m.credits) || m.credits.some((c) => !c.part || !c.by || c.licence === undefined || typeof c.verified !== 'boolean')) missing.push('credits[].part/by/licence/verified');
   if (missing.length) errors.push(`${m.slug}: model.json is missing ${missing.join(', ')}`);
   if (!['review', 'approved'].includes(m.status)) errors.push(`${m.slug}: status must be "review" or "approved"`);
+  if (m.paints && (m.paints.some((p) => !p.name || !/^#[0-9a-f]{6}$/i.test(p.hex ?? '')) || !m.paints.some((p) => p.hex.toLowerCase() === m.source?.paint?.toLowerCase()))) {
+    errors.push(`${m.slug}: paints need a name and a #rrggbb hex each, and one of them must be source.paint`);
+  }
 }
 stop('model.json errors');
 models.sort((a, b) => a.id.localeCompare(b.id));

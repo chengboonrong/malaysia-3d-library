@@ -13,16 +13,43 @@
     "file": "proton-x50.glb",
     "cameraOrbit": "35deg 75deg auto"
   },
+  "paints": [
+    {
+      "name": "Snow White",
+      "hex": "#e7e7e7"
+    },
+    {
+      "name": "Armour Silver",
+      "hex": "#808588"
+    },
+    {
+      "name": "Jet Grey",
+      "hex": "#454442"
+    },
+    {
+      "name": "Ocean Blue",
+      "hex": "#0c478b"
+    },
+    {
+      "name": "Citric Orange",
+      "hex": "#dd470c"
+    },
+    {
+      "name": "Passion Red",
+      "hex": "#ba1b1f"
+    }
+  ],
   "downloads": [],
   "source": {
     "repo": "kl-rush",
     "commit": "e041f0f3",
     "car": "rimba",
-    "paint": "#2f8f4f",
+    "paint": "#dd470c",
     "note": "KL Rush vehicle art, declared CC0-1.0 in the game’s own records. Its surface maps are the colour, normal and ORM maps every KL Rush car shares, baked from the Rimba SUV (the Proton X50)."
   },
   "notes": [
-    "Compressed for the web (meshopt geometry, KTX2 textures). The car’s paint and shading were set in code; here they are rebuilt as standard glTF materials, without dirt, dust and lamp glow. A download copy will be exported from source once the model is cleared."
+    "Compressed for the web (meshopt geometry, KTX2 textures). The car’s paint and shading were set in code; here they are rebuilt as standard glTF materials, without dirt, dust and lamp glow. A download copy will be exported from source once the model is cleared.",
+    "Colours: Proton’s colour list for the X50 sold from 2020 to 2024 (proton.com, checked 2026-11-09). The chips are close matches sampled from the maker’s colour swatches, not paint codes."
   ],
   "credits": [
     {

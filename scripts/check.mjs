@@ -118,6 +118,12 @@ try {
           await page.getByRole('button', { name: 'Reset' }).click();
           const reset = await settledOrbit(page);
           check(`${tag} ${name}: Reset returns to the default orbit`, reset !== front && reset === start, `${front} -> ${reset}`);
+          if (m.paints) { // the last paint chip repaints the car's "paint" material in that colour, read as sRGB
+            const last = m.paints.at(-1), want = [1, 3, 5].map((i) => { const c = parseInt(last.hex.slice(i, i + 2), 16) / 255; return c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4; });
+            await page.locator('.paints label').last().click();
+            const got = await page.evaluate(() => [...document.querySelector('.scene model-viewer').model.materials.find((x) => x.name === 'paint').pbrMetallicRoughness.baseColorFactor]);
+            check(`${tag} ${name}: the ${last.name} paint chip repaints the car`, want.every((v, i) => Math.abs(v - got[i]) < 1e-3), got.slice(0, 3).map((v) => v.toFixed(3)).join(', '));
+          }
           if (size === 'desktop') for (const link of await page.$$eval('a[download]', (as) => as.map((a) => a.href))) {
             const res = await page.request.get(link), body = await res.body(), want = MAGIC[link.split('.').pop()];
             const local = statSync(`dist${decodeURIComponent(new URL(link).pathname)}`).size;

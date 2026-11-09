@@ -13,16 +13,43 @@
     "file": "perodua-ativa.glb",
     "cameraOrbit": "35deg 75deg auto"
   },
+  "paints": [
+    {
+      "name": "Pearl Delima Red",
+      "hex": "#c3281f"
+    },
+    {
+      "name": "Pearl Diamond White",
+      "hex": "#e2e2e2"
+    },
+    {
+      "name": "Cobalt Blue",
+      "hex": "#1937ab"
+    },
+    {
+      "name": "Granite Grey",
+      "hex": "#5a5e63"
+    },
+    {
+      "name": "Glittering Silver",
+      "hex": "#a8aba9"
+    },
+    {
+      "name": "Coral Blue",
+      "hex": "#005565"
+    }
+  ],
   "downloads": [],
   "source": {
     "repo": "kl-rush",
     "commit": "e041f0f3",
     "car": "rentas",
-    "paint": "#ff7a1a",
+    "paint": "#1937ab",
     "note": "KL Rush vehicle art, declared CC0-1.0 in the game’s own records. Its surface maps are the colour, normal and ORM maps every KL Rush car shares, baked from the Rimba SUV (the Proton X50)."
   },
   "notes": [
-    "Compressed for the web (meshopt geometry, KTX2 textures). The car’s paint and shading were set in code; here they are rebuilt as standard glTF materials, without dirt, dust and lamp glow. A download copy will be exported from source once the model is cleared."
+    "Compressed for the web (meshopt geometry, KTX2 textures). The car’s paint and shading were set in code; here they are rebuilt as standard glTF materials, without dirt, dust and lamp glow. A download copy will be exported from source once the model is cleared.",
+    "Colours: Perodua’s colour list for the Ativa from 2021 (perodua.com.my and its brochure, checked 2026-11-09). Coral Blue replaced Cobalt Blue in 2026. The chips are close matches sampled from the maker’s colour swatches, not paint codes."
   ],
   "credits": [
     {

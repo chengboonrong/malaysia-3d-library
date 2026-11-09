@@ -35,7 +35,7 @@ Success, in the owner's words, is "loved to explore": people spend time turning 
 
 - **Build:** a static site built by `scripts/build.mjs` from `models/<slug>/model.json`. There is no framework and no bundler.
 - **Viewer:** `<model-viewer>` 4.4.0, with its meshopt and KTX2 decoders vendored. The site makes no requests to other origins.
-- **Model fields:** a catalogue id (`MY-###`), name, optional local name and its language, category, tags, summary, notes, and status (`review` or `approved`). Also a licence (`null` means pending), a viewer file with its default camera orbit, downloads (an empty list means view-only), credits, and a poster.
+- **Model fields:** a catalogue id (`MY-###`), name, optional local name and its language, category, tags, summary, notes, and status (`review` or `approved`). Also a licence (`null` means pending), a viewer file with its default camera orbit, downloads (an empty list means view-only), credits, and a poster. Cars also list their factory colours (`paints`), which visitors can switch between in the viewer (owner, 2026-11-09).
 - **Computed, never typed:** triangle count, file size and dimensions in metres.
 - **Downloads:** 25 models can be downloaded under CC BY 4.0 with the credit "Malaysia 3D Library" (owner, 2026-11-09): the food, kopitiam props, kampung house, wau, animals, workshop and shophouse. The 8 cars and 18 landmarks are view-only until the rights in their real designs are checked.
 - **Public gate:** the site can only go public when every model is approved, has a licence and verified credits, and has a poster.

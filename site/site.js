@@ -54,3 +54,17 @@ for (const button of document.querySelectorAll('[data-orbit]')) button.addEventL
   viewer.cameraTarget = 'auto auto auto';
   viewer.fieldOfView = 'auto';
 });
+
+// A car's paint chips repaint the material scripts/import-kl-rush.mjs names "paint"; a hex string is read as sRGB.
+const paints = document.querySelector('.paints');
+if (paints) {
+  const viewer = document.querySelector('.scene model-viewer');
+  const paint = () => { // also on load, so a chip the browser restored on reload or Back is applied too
+    const chosen = paints.querySelector(':checked');
+    paints.querySelector('.paint-name').textContent = chosen.parentElement.title;
+    viewer.model?.materials.find((m) => m.name === 'paint')?.pbrMetallicRoughness.setBaseColorFactor(chosen.value);
+  };
+  paints.hidden = false;
+  paints.addEventListener('change', paint);
+  viewer.addEventListener('load', paint);
+}

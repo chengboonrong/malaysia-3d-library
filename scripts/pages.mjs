@@ -149,11 +149,18 @@ export function modelPage({ site, m, nearby }) {
         <div><h2 id="status-title">View only</h2><p>It shows a real design that may be protected, so it can’t be downloaded until those rights are checked. Until then it is here to look at.</p></div>
       </section>`;
   const credits = m.credits.map((c) => `<li><b>${esc(c.part)}:</b> ${c.url ? `<a href="${esc(c.url)}">${esc(c.by)}</a>` : esc(c.by)} · ${c.licence ? esc(c.licence) : 'licence pending'}${c.verified ? '' : ' (not verified)'}${c.note ? ` · ${esc(c.note)}` : ''}</li>`);
+  // A car's factory colours as paint chips; the viewer file and poster show the one that is source.paint. site.js shows them.
+  const painted = m.paints?.find((p) => p.hex.toLowerCase() === m.source.paint.toLowerCase());
+  const paints = m.paints ? `
+        <fieldset class="paints" hidden>
+          <legend>Colour <span class="paint-name" aria-hidden="true">${esc(painted.name)}</span></legend>
+          <div class="chips">${m.paints.map((p) => `<label title="${esc(p.name)}"><input type="radio" name="paint" value="${esc(p.hex)}"${p === painted ? ' checked' : ''}><span class="chip" style="--chip: ${esc(p.hex)}"></span><span class="visually-hidden">${esc(p.name)}</span></label>`).join('')}</div>
+        </fieldset>` : '';
   return `  <main class="model">
     <section class="scene" aria-labelledby="title">
       <figure class="stage">
         <model-viewer src="${esc(m.viewer.file)}"${m.poster ? ' poster="poster.webp"' : ''} alt="${esc(m.name)}, interactive 3D model" camera-controls touch-action="pan-y" camera-orbit="${esc(m.viewer.cameraOrbit)}" interaction-prompt="none" shadow-intensity="0.8"></model-viewer>
-        <div class="limits">${roundel('h', h)}${roundel('w', w)}</div>
+        <div class="limits">${roundel('h', h)}${roundel('w', w)}</div>${paints}
         <figcaption class="stage-controls">
           <span class="hint">Drag to turn. Scroll or pinch to zoom.</span>
           <span class="view-actions" role="group" aria-label="Camera views">

@@ -13,16 +13,43 @@
     "file": "proton-persona.glb",
     "cameraOrbit": "35deg 75deg auto"
   },
+  "paints": [
+    {
+      "name": "Snow White",
+      "hex": "#e7e7e9"
+    },
+    {
+      "name": "Jet Grey",
+      "hex": "#5a5b5d"
+    },
+    {
+      "name": "Armour Silver",
+      "hex": "#c3c3c3"
+    },
+    {
+      "name": "Ruby Red",
+      "hex": "#9d2d21"
+    },
+    {
+      "name": "Rosewood Maroon",
+      "hex": "#402a26"
+    },
+    {
+      "name": "Quartz Black",
+      "hex": "#15191c"
+    }
+  ],
   "downloads": [],
   "source": {
     "repo": "kl-rush",
     "commit": "e041f0f3",
     "car": "permai",
-    "paint": "#1d4fa8",
+    "paint": "#9d2d21",
     "note": "KL Rush vehicle art, declared CC0-1.0 in the game’s own records. Its surface maps are the colour, normal and ORM maps every KL Rush car shares, baked from the Rimba SUV (the Proton X50)."
   },
   "notes": [
-    "Compressed for the web (meshopt geometry, KTX2 textures). The car’s paint and shading were set in code; here they are rebuilt as standard glTF materials, without dirt, dust and lamp glow. A download copy will be exported from source once the model is cleared."
+    "Compressed for the web (meshopt geometry, KTX2 textures). The car’s paint and shading were set in code; here they are rebuilt as standard glTF materials, without dirt, dust and lamp glow. A download copy will be exported from source once the model is cleared.",
+    "Colours: Proton’s colour list for the 2019 Persona (proton.com, checked 2026-11-09). Quartz Black was sold only on the 2021 Black Edition; its chip is matched from Proton’s photos. The chips are close matches sampled from the maker’s colour swatches, not paint codes."
   ],
   "credits": [
     {

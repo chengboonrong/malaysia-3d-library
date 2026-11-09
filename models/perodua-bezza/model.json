@@ -13,16 +13,43 @@
     "file": "perodua-bezza.glb",
     "cameraOrbit": "35deg 75deg auto"
   },
+  "paints": [
+    {
+      "name": "Garnet Red",
+      "hex": "#cb2529"
+    },
+    {
+      "name": "Granite Grey",
+      "hex": "#666666"
+    },
+    {
+      "name": "Sugar Brown",
+      "hex": "#997976"
+    },
+    {
+      "name": "Ocean Blue",
+      "hex": "#00b1dd"
+    },
+    {
+      "name": "Glittering Silver",
+      "hex": "#c1c1c1"
+    },
+    {
+      "name": "Ivory White",
+      "hex": "#f9f9f9"
+    }
+  ],
   "downloads": [],
   "source": {
     "repo": "kl-rush",
     "commit": "e041f0f3",
     "car": "jelita",
-    "paint": "#9aa0a6",
+    "paint": "#c1c1c1",
     "note": "KL Rush vehicle art, declared CC0-1.0 in the game’s own records. Its surface maps are the colour, normal and ORM maps every KL Rush car shares, baked from the Rimba SUV (the Proton X50)."
   },
   "notes": [
-    "Compressed for the web (meshopt geometry, KTX2 textures). The car’s paint and shading were set in code; here they are rebuilt as standard glTF materials, without dirt, dust and lamp glow. A download copy will be exported from source once the model is cleared."
+    "Compressed for the web (meshopt geometry, KTX2 textures). The car’s paint and shading were set in code; here they are rebuilt as standard glTF materials, without dirt, dust and lamp glow. A download copy will be exported from source once the model is cleared.",
+    "Colours: Perodua’s colour list for the 2020 Bezza (perodua.com.my and its brochure, checked 2026-11-09). The chips are close matches sampled from the maker’s colour swatches, not paint codes."
   ],
   "credits": [
     {

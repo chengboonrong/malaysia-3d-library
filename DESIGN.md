@@ -264,6 +264,9 @@ Green direction sign listing nearby objects across exits, each with a direction 
 ### Camera buttons (`.stage-controls`, `.hint`, `.view-actions button`)
 Small asphalt signs with a white border line (Front, Reset); hover lightens the face to #45484c.
 
+### Paint chips (`.paints`, `.paint-name`, `.chips`, `.chip`)
+Cars only. A small asphalt plate with the camera buttons' white border line, at the stage's bottom right (below the stage, right-aligned, under 860px). Its legend reads "Colour" and the chosen colour's name. Each factory colour is a 30px disc in that colour with a 2px white ring; the chosen one gets a detached ring (3px asphalt gap, 3px white). They are native radio inputs, so arrow keys move through them; focus shows the yellow ring 8px out. Choosing one repaints the viewer's `paint` material; the plate stays `hidden` until `site.js` runs, and is hidden without WebGL.
+
 ### Info board (`.info`, `.info-board`)
 Blue information board on two steel posts, max 44rem, carrying the about text and the stone hint.
 

@@ -456,6 +456,30 @@ button, input { font: inherit; color: inherit; }
 }
 .view-actions button:hover { --face: #45484c; }
 .no-webgl .stage-controls { display: none; }
+/* A car's factory colours: paint chips on a small asphalt plate at the stage's bottom right */
+.paints {
+  --ring: var(--yellow);
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  max-width: min(100%, 380px);
+  margin: 0;
+  padding: 10px 16px 14px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--asphalt);
+  box-shadow: inset 0 0 0 3px var(--asphalt), inset 0 0 0 5px var(--sheet), 0 4px 10px rgb(0 0 0 / 0.25);
+  color: var(--sheet);
+}
+.paints legend { float: left; width: 100%; padding: 0 0 10px; font-size: 0.8125rem; font-weight: 700; }
+.paint-name { margin-left: 4px; font-weight: 800; }
+.chips { clear: left; display: flex; flex-wrap: wrap; gap: 12px; }
+.paints label { position: relative; display: block; cursor: pointer; }
+.paints input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.chip { display: block; width: 30px; height: 30px; border-radius: 50%; background: var(--chip); box-shadow: 0 0 0 2px var(--sheet); transition: box-shadow 200ms var(--ease); }
+.paints input:checked + .chip { box-shadow: 0 0 0 3px var(--asphalt), 0 0 0 6px var(--sheet); }
+.paints input:focus-visible + .chip { outline: 3px solid var(--ring); outline-offset: 8px; }
+.no-webgl .paints { display: none; }
 .nameplate { display: flex; margin-top: 30px; padding-right: 260px; }
 .nameplate .attraction { --margin: 6px; --line: 3px; position: relative; padding: 14px 16px 14px 20px; gap: 14px; border-radius: 10px; }
 .nameplate .attraction::before { content: ''; position: absolute; left: 44px; bottom: 100%; width: 10px; height: 30px; background: linear-gradient(90deg, #8d9297, #c3c7cb 45%, #8d9297); pointer-events: none; }
@@ -544,6 +568,7 @@ button, input { font: inherit; color: inherit; }
   .exit-count { display: none; }
   .roadside { grid-template-columns: 1fr; }
   .stage-controls { position: static; flex-direction: row; justify-content: flex-end; margin-top: 10px; }
+  .paints { position: static; width: fit-content; margin: 10px 0 0 auto; }
   .nameplate { padding-right: 0; margin-top: 26px; }
   .roadside .facts { grid-row: auto; }
   .facts dl { grid-template-columns: 1fr 1fr; }
