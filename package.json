@@ -1,0 +1,25 @@
+{
+  "name": "malaysia-3d-library",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "posters": "node scripts/posters.mjs",
+    "check": "node scripts/check.mjs",
+    "seam": "node scripts/seam-check.mjs"
+  },
+  "devDependencies": {
+    "@gltf-transform/core": "4.5.1",
+    "@gltf-transform/extensions": "4.5.1",
+    "@gltf-transform/functions": "4.5.1",
+    "@google/model-viewer": "4.4.0",
+    "fflate": "0.8.3",
+    "gltf-validator": "2.0.0-dev.3.10",
+    "meshoptimizer": "1.3.0",
+    "playwright": "1.63.0",
+    "three": "0.183.2"
+  }
+}

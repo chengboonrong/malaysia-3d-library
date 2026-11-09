@@ -1,0 +1,25 @@
+{
+  "id": "MY-001",
+  "name": "Five-Foot-Way Shophouse",
+  "localName": { "lang": "ms", "text": "Rumah Kedai Lima Kaki" },
+  "category": "Architecture",
+  "summary": "A fictional two-storey KL Rush shophouse with a sheltered pavement, sage awning and plaster facade. Use it as a single storefront, or build a row from the row kit.",
+  "tags": ["Kuala Lumpur–inspired", "KL Rush original geometry", "Exterior"],
+  "status": "review",
+  "licence": null,
+  "viewer": { "file": "five-foot-way-shophouse.glb", "cameraOrbit": "28deg 76deg auto" },
+  "downloads": [
+    { "label": "Download GLB", "file": "five-foot-way-shophouse.glb" },
+    { "label": "Row kit ZIP", "file": "five-foot-way-shophouse-row-kit.zip", "from": "row-kit" }
+  ],
+  "tile": { "file": "row-kit/five-foot-way-shophouse-module.glb", "width": 5.6 },
+  "notes": [
+    "The standalone shophouse has an arcade column at each end, matching the game’s runtime columns. It embeds six 1024 × 512 texture maps (JPEG colour and normal, PNG roughness) and uses metres, with its base at ground level and the street side facing +Z.",
+    "The row kit holds a column-free module, a single column and a README. Place modules every 5.6 m and one column on each join, so neighbours share a column instead of doubling it."
+  ],
+  "credits": [
+    { "part": "Geometry", "by": "KL Rush", "url": "https://github.com/chengboonrong/kl-rush-preview", "licence": null, "verified": false, "note": "Built by a scripted agent from KL Rush source; see source/BUILD.md. Reuse terms undecided." },
+    { "part": "Surface map", "by": "ambientCG PaintedPlaster017", "url": "https://ambientcg.com/view?id=PaintedPlaster017", "licence": "CC0-1.0", "verified": true, "note": "Licence checked 2026-11-09 at docs.ambientcg.com/license. Use in KL Rush per its LICENSES.md." },
+    { "part": "Surface map", "by": "ambientCG Concrete034", "url": "https://ambientcg.com/view?id=Concrete034", "licence": "CC0-1.0", "verified": true, "note": "Licence checked 2026-11-09 at docs.ambientcg.com/license. Use in KL Rush per its LICENSES.md." }
+  ]
+}
